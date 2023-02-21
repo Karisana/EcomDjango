@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<p>Home</p>
-</body>
-</html>
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+<div style="margin-top: 10rem;">
+		<div class="col">
+			<div class="row">
+				<h3 style="text-align: center; margin-bottom: 2rem">Товары:</h3>
+				{% for item in products %}
+
+			      <div  class="col-lg-6 mb-3 d-flex align-items-stretch" style="margin-bottom: 2rem;">
+			         <div class="card">
+
+				        <img class="card-img-top" src="{{ item.image.url }}" style="height: 18rem; width: 100%;  object-fit: cover;">
+			            <div class="card-body">
+		                <p class="mb-4 mt-4"> Категория: <a class="my_link" href="">{{ item.category }} </a><p>
+
+			              <h5 class="card-title mb-4 mt-4 fw-bold">  {{ item.title }}</h5>
+			              <p class="card-text my-card-text mb-3 mt-3">{{ item.description}}</p>
+			            </div>
+
+			            <div class="card-footer text-muted">
+				            {{ item.created_at |date:'d/m/Y H:i' }}
+			            </div>
+
+			          </div>
+			      </div>
+				{% endfor %}
+			</div>
+		</div>
+</div>
+{% endblock %}
